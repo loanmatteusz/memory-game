@@ -1,5 +1,12 @@
+import { cn } from "@/lib/utils";
 import { Sparkles } from "lucide-react";
 import { useState } from "react";
+
+const CARD_STYLES = {
+    base: "absolute flex h-full w-full items-center justify-center rounded-xl border-2 backface-hidden",
+    front: "rotate-y-180 bg-white border-purple-200",
+    verse: "bg-pink border-white/20",
+}
 
 function Card() {
     const [isFlipped, setIsFlipped] = useState<boolean>(false);
@@ -10,12 +17,12 @@ function Card() {
 
     return (
         <div className="relative h-16 w-16 cursor-pointer" onClick={handleClick}>
-            <div className={`h-full w-full preserve-3d ${isFlipped && "rotate-y-180"} transition-transform duration-500`}>
-                <div className="backface-hidden absolute flex h-full w-full bg-pink items-center justify-center rounded-xl border-2 border-white/20">
+            <div className={ cn("h-full w-full preserve-3d transition-transform duration-500", isFlipped && "rotate-y-180") }>
+                <div className={ cn(CARD_STYLES.base, CARD_STYLES.verse) }>
                     <Sparkles className="h-6 w-6 text-white" />
                 </div>
-                <div className="backface-hidden rotate-y-180 absolute flex h-full w-full bg-white items-center justify-center rounded-xl border-2 border-purple-200">
-                    🍬
+                <div className={ cn(CARD_STYLES.base, CARD_STYLES.front) }>
+                    🍫
                 </div>
             </div>
         </div>
