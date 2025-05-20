@@ -8,7 +8,11 @@ const CARD_STYLES = {
     verse: "bg-pink border-white/20",
 }
 
-function Card() {
+type CardProps = {
+    emoji: string;
+}
+
+function Card({ emoji }: CardProps) {
     const [isFlipped, setIsFlipped] = useState<boolean>(false);
 
     const handleClick = () => {
@@ -22,7 +26,7 @@ function Card() {
                     <Sparkles className="h-6 w-6 text-white" />
                 </div>
                 <div className={ cn(CARD_STYLES.base, CARD_STYLES.front) }>
-                    🍫
+                    { emoji }
                 </div>
             </div>
         </div>
