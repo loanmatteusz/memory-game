@@ -7,7 +7,7 @@ function App() {
   const gameCompleted = false;
 
   return (
-    <div className="flex flex-col min-h-screen items-center justify-center bg-blue-200 gap-4">
+    <div className="flex flex-col min-h-screen items-center justify-center bg-blue-200 gap-4 sm:p-8 sm:gap-8">
       <ScoreBoard moves={0} time={0} onRestart={() => {}} />
       
       <GameBoard />

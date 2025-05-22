@@ -11,7 +11,7 @@ const CARDS = [...EMOJIS, ...EMOJIS].sort(() => Math.random() - 0.5).map((emoji,
 function GameBoard() {
 
     return (
-        <div className="grid grid-cols-4 gap-2 rounded-xl bg-blue-100 p-2">
+        <div className="grid grid-cols-4 gap-2 rounded-xl bg-blue-100 p-2 sm:p-4 sm:gap-4">
             {
                 CARDS.map(card => (
                     <Card key={card.id} emoji={card.emoji} />
