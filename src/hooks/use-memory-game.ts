@@ -11,7 +11,6 @@ export const createShuffledCards = () => {
     }));
 }
 
-
 export function useMemoryGame() {
     const [cards, setCards] = useState<Card[]>([]);
 
