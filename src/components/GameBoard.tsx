@@ -5,9 +5,10 @@ import Card from "./Card";
 
 type GameBoardProps = {
     cards: CardType[];
+    onCardClick: (id: number) => void;
 }
 
-function GameBoard({ cards }: GameBoardProps) {
+function GameBoard({ cards, onCardClick }: GameBoardProps) {
 
     return (
         <motion.div
@@ -16,7 +17,11 @@ function GameBoard({ cards }: GameBoardProps) {
         >
             {
                 cards.map(card => (
-                    <Card key={card.id} emoji={card.emoji} />
+                    <Card
+                        key={card.id}
+                        {...card}
+                        onClick={() => onCardClick(card.id)}
+                    />
                 ))
             }
         </motion.div>

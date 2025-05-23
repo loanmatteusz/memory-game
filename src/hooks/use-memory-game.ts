@@ -21,8 +21,17 @@ export function useMemoryGame() {
 
     useEffect(initializeGame, []);
 
+    const handleCardClick = (id: number) => {
+        setCards((prevCards) =>
+            prevCards.map(
+                card => card.id === id ? { ...card, isFlipped: true } : card,
+            ),
+        );
+    }
+
     return {
         cards,
+        handleCardClick,
         resetGame: initializeGame,
     }
 }
