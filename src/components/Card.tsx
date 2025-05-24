@@ -10,10 +10,11 @@ const CARD_STYLES = {
 type CardProps = {
     emoji: string;
     isFlipped: boolean;
+    isMatched: boolean;
     onClick: () => void;
 }
 
-function Card({ emoji, isFlipped, onClick }: CardProps) {
+function Card({ emoji, isFlipped, isMatched, onClick }: CardProps) {
 
     return (
         <div
@@ -24,7 +25,7 @@ function Card({ emoji, isFlipped, onClick }: CardProps) {
                 <div className={ cn(CARD_STYLES.base, CARD_STYLES.verse) }>
                     <Sparkles className="h-6 w-6 text-white sm:h-8 sm:w-8 animate-pulse" />
                 </div>
-                <div className={ cn(CARD_STYLES.base, CARD_STYLES.front) }>
+                <div className={ cn(CARD_STYLES.base, CARD_STYLES.front, isMatched && 'transition-all duration-500 bg-indigo-50') }>
                     { emoji }
                 </div>
             </div>
