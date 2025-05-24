@@ -14,6 +14,7 @@ export const createShuffledCards = () => {
 export function useMemoryGame() {
     const [cards, setCards] = useState<Card[]>([]);
     const [flippedCards, setFlippedCards] = useState<Card[]>([]);
+    const [moves, setMoves] = useState<number>(0);
 
     const initializeGame = () => {
         setCards(createShuffledCards());
@@ -52,12 +53,14 @@ export function useMemoryGame() {
     
                 setCards(updatedCards);
                 setFlippedCards([]);
+                setMoves(prevModes => prevModes + 1);
             }, 500);
         }
     }
 
     return {
         cards,
+        moves,
         handleCardClick,
         resetGame: initializeGame,
     }
