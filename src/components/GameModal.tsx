@@ -1,3 +1,5 @@
+import { formatTime } from "@/lib/format-time";
+
 type GameModalProps = {
     moves: number;
     time: number;
@@ -13,7 +15,7 @@ function GameModal({ moves, time, onRestart }: GameModalProps) {
                 </h2>
                 <p className="mb-6 text-lg">
                     You completed the game in <br/>
-                    <b>{moves} moves</b> and <b>{time}</b>!
+                    <b>{moves} moves</b> and <b>{formatTime(time)}</b>!
                 </p>
                 <button onClick={onRestart} className="bg-pink px-6 py-3 rounded-lg font-medium text-white transition-opacity hover:opacity-90">
                     Play Again
