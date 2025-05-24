@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { EMOJIS } from "@/constants";
 import { Card } from "@/types";
+import { useTimer } from "./use-timer";
 
 export const createShuffledCards = () => {
     return [...EMOJIS, ...EMOJIS].sort(() => Math.random() - 0.5).map((emoji, index) => ({
@@ -15,6 +16,9 @@ export function useMemoryGame() {
     const [cards, setCards] = useState<Card[]>([]);
     const [flippedCards, setFlippedCards] = useState<Card[]>([]);
     const [moves, setMoves] = useState<number>(0);
+    const [gameStarted, setGameStarted] = useState<boolean>(false);
+
+    const { time } = useTimer(gameStarted);
 
     const initializeGame = () => {
         setCards(createShuffledCards());
@@ -26,6 +30,7 @@ export function useMemoryGame() {
         const clickedCard = cards.find(card => card.id === id)!;
 
         if (flippedCards.length === 2 || clickedCard.isFlipped || clickedCard.isMatched) return;
+        if (!gameStarted) setGameStarted(true);
 
         setCards((prevCards) =>
             prevCards.map(
@@ -61,6 +66,7 @@ export function useMemoryGame() {
     return {
         cards,
         moves,
+        time,
         handleCardClick,
         resetGame: initializeGame,
     }
